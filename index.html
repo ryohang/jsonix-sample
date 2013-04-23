@@ -1,0 +1,36 @@
+<html>
+<head>
+  <title>Jsonix Bug Demo</title>
+
+  <!-- <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script> -->
+
+  <script type="text/javascript" src="lib/jsonix-scripts-1.0-all.js"></script>
+
+  <script type="text/javascript" src="jabx/Mappings.js"></script>
+
+</head>
+
+<body>
+  <div>
+	 Open in google chrome by google-chrome --args --disable-web-security --allow-file-access-from-files
+  </div>
+</body>
+   <script>
+  	var context = new Jsonix.Context([jabx.Mappings]);
+	// Then we create an unmarshaller
+	var unmarshaller = context.createUnmarshaller();
+
+	// Unmarshal an object from the XML retrieved from the URL
+	unmarshaller.unmarshalURL("example.xml",
+			// This callback function will be provided with the result of the unmarshalling
+			function(result) {
+				console.log(result);
+
+				// Then we create an unmarshaller
+				var marshaller = context.createMarshaller();
+				// Marshal as document
+				var objectAsXMLDocument = marshaller.marshalDocument(result);
+				
+			});	
+   </script> 
+</html>
